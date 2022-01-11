@@ -6,7 +6,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     const { loading, isAuthenticated, user } = useSelector((state) => state.user);
     return (
         <Fragment>
-            {loading === false && (
+            {!loading  && (
                 <Route
                     {...rest}
                     render={(props) => {
