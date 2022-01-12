@@ -2,7 +2,7 @@
 import './App.css';
 import Header from "./component/layout/Header/Header.js"
 import Footer from "./component/layout/Footer/Footer.js"
-import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from "./component/Home/Home"
 import webFont from "webfontloader"
 import React, { useState } from "react"
@@ -31,6 +31,9 @@ import { loadStripe } from "@stripe/stripe-js"
 import OrderSuccess from './component/Cart/orderSuccess';
 import MyOrders from './component/Order/MyOrders';
 import OrderDetails from './component/Order/OrderDetails';
+import Dashboard from "./component/Admin/Dashboard"
+import ProductList from "./component/Admin/ProductList.js"
+import NewProduct from "./component/Admin/NewProduct.js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -77,15 +80,35 @@ function App() {
         </Elements>
       )}
 
-        <ProtectedRoute exact path="/success" component={OrderSuccess} />
-        <ProtectedRoute exact path="/orders" component={MyOrders} />
-      
+      <ProtectedRoute exact path="/success" component={OrderSuccess} />
+      <ProtectedRoute exact path="/orders" component={MyOrders} />
 
-        <Switch>
+
+      <Switch>
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
-        </Switch>
+      </Switch>
 
+      <ProtectedRoute
+        isAdmin={true}
+        exact
+        path="/admin/dashboard"
+        component={Dashboard}
+      />
+
+      <ProtectedRoute
+        isAdmin={true}
+        exact
+        path="/admin/products"
+        component={ProductList}
+      />
+
+      <ProtectedRoute
+        exact
+        path="/admin/product"
+        isAdmin={true}
+        component={NewProduct}
+      />
       <Footer />
     </Router>
   );

@@ -11,7 +11,7 @@ import {
 } from "../../actions/productAction";
 import { useAlert } from 'react-alert';
 import ReviewCard from "./ReviewCard.js"
-import ReactStars from "react-rating-stars-component"
+
 import "./ProductDetails.css"
 import Loader from '../layout/Loader/Loader';
 import MetaData from '../layout/MetaData';
